@@ -11,6 +11,6 @@
     "targetType": "executable",
 
     "preGenerateCommands": [
-        "echo \"gen\""
+        "git submodule update"
     ]
 }
