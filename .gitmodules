@@ -1,0 +1,3 @@
+[submodule "meu2d"]
+	path = meu2d
+	url = https://github.com/jprekz/meu2d.git
