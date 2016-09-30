@@ -26,7 +26,13 @@ ubyte binarizeOnBlack(ushort h, ubyte s, ubyte v) {
     return ( (v/255.0) * (1 - s/255.0)^^2 * ((359-h) / 359.0) * 255).to!ubyte;
 }
 
-void main() {
+import meu2d;
+mixin gameMain!(() {
+    init(640, 480, "test");
+    start();
+});
+
+void maina() {
     StopWatch sw;
 
     write("input filename: ");

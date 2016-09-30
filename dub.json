@@ -5,7 +5,8 @@
     "license": "BSL-1.0",
 
     "dependencies": {
-        "imageformats": "~>6.1.0"
+        "imageformats": "~>6.1.0",
+        "meu2d": { "path": "./meu2d/" }
     },
 
     "targetType": "executable",
