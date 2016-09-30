@@ -1,0 +1,16 @@
+{
+    "name": "procon27-outline-test",
+    "description": "A minimal D application.",
+    "authors": [ "rekz" ],
+    "license": "BSL-1.0",
+
+    "dependencies": {
+        "imageformats": "~>6.1.0"
+    },
+
+    "targetType": "executable",
+
+    "preGenerateCommands": [
+        "echo \"gen\""
+    ]
+}
