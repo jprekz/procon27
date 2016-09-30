@@ -28,7 +28,7 @@ ubyte binarizeOnBlack(ushort h, ubyte s, ubyte v) {
 
 import meu2d;
 mixin gameMain!(() {
-    init(640, 480, "test");
+    init(640, 480, "test", WindowStatus.resizable);
     start();
 });
 
