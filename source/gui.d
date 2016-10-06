@@ -3,6 +3,7 @@ module gui;
 import meu2d;
 
 import imagetovec;
+import projection;
 
 import imageformats;
 
@@ -35,6 +36,17 @@ class GUI : GameObject {
         IFImage im = read_image("testimg/DSC_0023_820.jpg", ColFmt.RGB);
         pathes = imageToPathes(im);
         image = Texture(im.pixels.chunks(3).map!(c => c ~ 255).joiner.array, im.w, im.h);
+        /*
+        auto params = calcProjParams(
+            [[0.0,0.0],[0.0,100.0],[100.0,100.0],[100.0,0.0]],
+            [[0.0,0.0],[0.0,100.0],[95.0,95.0],[100.0,0.0]]
+        );
+        foreach(ref path; pathes) {
+            foreach(ref vec; path) {
+                vec = vec.projectionTrans(params);
+            }
+        }
+        */
     }
 
     long ti, tj;
