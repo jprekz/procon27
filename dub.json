@@ -1,6 +1,6 @@
 {
-    "name": "procon27-outline-test",
-    "description": "A minimal D application.",
+    "name": "procon27",
+    "description": "Procon27",
     "authors": [ "rekz" ],
 
     "dependencies": {
