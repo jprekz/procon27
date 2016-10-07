@@ -37,6 +37,10 @@ auto pathesToString(Vec!double[][] pathes) {
         path.map!(v => v.x.to!string ~ " " ~ v.y.to!string).join(" "));
 }
 
+auto pathToString(Vec!double[] path) {
+    return path.map!(v => v.x.to!string ~ " " ~ v.y.to!string).join(" ");
+}
+
 Vec!double[][] stringToPathes(File file) {
     return file
         .byLine
