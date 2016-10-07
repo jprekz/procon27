@@ -69,8 +69,8 @@ class GUI : GameObject {
 
         foreach(i, path; pathes) foreach(j, vec; path) {
             const vi = vec * scale + pos;
-            if (Mouse.x > vi.x.to!int - 4 && Mouse.x < vi.x.to!int + 4 &&
-                Mouse.y > vi.y.to!int - 4 && Mouse.y < vi.y.to!int + 4) {
+            if (Mouse.x > vi.x.to!int - 5 && Mouse.x < vi.x.to!int + 5 &&
+                Mouse.y > vi.y.to!int - 5 && Mouse.y < vi.y.to!int + 5) {
                 if (click && !beforeClick) {
                     ti = i;
                     tj = j;

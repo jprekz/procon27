@@ -8,9 +8,5 @@
         "meu2d": { "path": "./meu2d/" }
     },
 
-    "targetType": "executable",
-
-    "preGenerateCommands": [
-        "git submodule foreach git pull origin master"
-    ]
+    "targetType": "executable"
 }
