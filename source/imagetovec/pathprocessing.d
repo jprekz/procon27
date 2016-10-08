@@ -17,14 +17,24 @@ Vec!double[] pathOptimization(Vec!int[] inputPath, double scale) {
     import std.algorithm : map;
     if (inputPath.length < 3) return inputPath.map!(v => Vec!double(v.x, v.y)).array;
 
-    Vec!int[] p = inputPath;
-    p = p.pathClean(0.12 / scale);
-    p = p.pathClean(0.18 / scale);
-    
-    return p.map!(v => Vec!double(v.x, v.y)).array;
+    Vec!double[] p = inputPath.map!(v => Vec!double(v.x, v.y)).array;
+    p = p.pathClean(0.1 / scale);
+    p = p.pathClean(0.1 / scale);
+    p = p.pathClean(0.1 / scale);
+    p = p.pathSharp(0.9 / scale, 1.1);
+    p = p.pathSharp(0.9 / scale, 1.1);
+    p = p.pathSharp(0.9 / scale, 1.2);
+    p = p.pathSharp(0.9 / scale, 1.2);
+    p = p.pathSharp(1.0 / scale, 1.4);
+    p = p.pathSharp(1.0 / scale, 1.4);
+    p = p.pathClean(0.16 / scale);
+    p = p.pathClean(0.16 / scale);
+    p = p.pathSharp(0.9 / scale, 1.1);
+    p = p.pathSharp(0.9 / scale, 1.1);
+    return p;
 }
 
-Vec!int[] pathClean(Vec!int[] inputPath, double th) {
+Vec!double[] pathClean(Vec!double[] inputPath, double th) {
     import std.math;
     import std.range : cycle;
 
@@ -32,7 +42,7 @@ Vec!int[] pathClean(Vec!int[] inputPath, double th) {
 
     auto cyclePath = inputPath.cycle;
 
-    Vec!int[] path;
+    Vec!double[] path;
 
     size_t firstAlpha = 0;
     LOOP1 : foreach(omega; 2 .. inputPath.length) {
@@ -61,5 +71,32 @@ Vec!int[] pathClean(Vec!int[] inputPath, double th) {
         }
     }
 
+    return path;
+}
+
+Vec!double[] pathSharp(Vec!double[] inputPath, double th, double thd) {
+    import std.range : cycle;
+
+    if (inputPath.length < 4) return inputPath;
+
+    Vec!double[] path;
+
+    auto p = inputPath.cycle;
+    foreach(ref i; 0 .. inputPath.length) {
+        if ((p[i+1] - p[i]).abs < th) {
+            auto pA = p[i - 1];
+            auto pB = p[i + 2];
+            auto vecA = p[i] - p[i - 1];
+            auto vecB = p[i + 1] - p[i + 2];
+            double t = (vecB.x * (pB.y - pA.y) + vecB.y * (pA.x - pB.x)) / (vecB.x * vecA.y - vecB.y * vecA.x);
+            if (t < thd && t > 1.0) {
+                auto pnew = pA + (vecA * t);
+                path ~= pnew;
+                i++;
+                continue;
+            }
+        }
+        path ~= p[i];
+    }
     return path;
 }

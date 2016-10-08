@@ -23,7 +23,7 @@ ubyte[] thresholding(alias BINARIZE)(IFImage im) {
     foreach(ref pixel; o.parallel) {
         pixel = ((pixel < th) ? 0 : 255).to!ubyte;
     }
-    o = o.gaussian!10(im.h, im.w);
+    o = o.gaussian!6(im.h, im.w);
     foreach(ref pixel; o.parallel) {
         pixel = ((pixel < 127) ? 0 : 255).to!ubyte;
     }

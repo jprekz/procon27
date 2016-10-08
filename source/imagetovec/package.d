@@ -28,8 +28,9 @@ ubyte binarizeOnBlack(ushort h, ubyte s, ubyte v) {
 Vec!double[][] imageToPathes(IFImage im) {
      return im
         .thresholding!binarizeOnWhiteSimple
+        .saveBinarized(im.h, im.w)
         .trace(im.h, im.w)
-        .pathesOptimization(30.0 / 800);
+        .pathesOptimization(30.0 / (im.h / 2.0));
 }
 
 auto pathesToString(Vec!double[][] pathes) {

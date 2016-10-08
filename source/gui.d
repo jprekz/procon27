@@ -39,7 +39,7 @@ class GUI : GameObject {
         import std.string;
         meuLogger = new MeuLogger(24, "mplus-1p-regular.ttf");
         global.add(meuLogger.getGameObject, int.max);
-        IFImage im = read_image("testimg/DSC_0023_820.jpg", ColFmt.RGB);
+        IFImage im = read_image("input.jpg", ColFmt.RGB);
         pathes = imageToPathes(im);
         image = Texture(im.pixels.chunks(3).map!(c => c ~ 255).joiner.array, im.w, im.h);
         numLabel ~= renderText("1", 20, "mplus-1p-regular.ttf", Color(0, 0, 0));
@@ -134,6 +134,10 @@ class GUI : GameObject {
                 );
                 drawLine(before.x.to!int, before.y.to!int, vec.x.to!int, vec.y.to!int);
                 before = vec;
+
+                if (j == 0 || j == 1) {
+                    numLabel[j].draw(vec.x.to!int, vec.y.to!int);
+                }
 
                 if (Mouse.x > vec.x.to!int - 4 && Mouse.x < vec.x.to!int + 4 &&
                     Mouse.y > vec.y.to!int - 4 && Mouse.y < vec.y.to!int + 4) {
